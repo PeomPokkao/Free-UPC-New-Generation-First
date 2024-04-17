@@ -8,12 +8,10 @@ elseif game.PlaceId == 7449423635 then
     W3 = true
 end
 
-
-
-local VirtualUser=game:service'VirtualUser'
-game:service'Players'.LocalPlayer.Idled:connect(function()
-VirtualUser:CaptureController()
-VirtualUser:ClickButton2(Vector2.new())
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 
 function TP(Pos)
@@ -2001,72 +1999,47 @@ Tab1:AddToggle({
 	Default = false,
 	Callback = function(Value)
         _G.PartNeon = Value
-if _G.PartNeon == true then
+
 spawn(function()
     game:GetService("RunService").Heartbeat:Connect(function()
         if _G.PartNeon then
-          if not game:GetService("Workspace"):FindFirstChild("LOL") then
-             local Paertaiteen = Instance.new("Part")
-             Paertaiteen.Name = "LOL"
-             Paertaiteen.Parent = game.Workspace
-             Paertaiteen.Anchored = true
-             Paertaiteen.Transparency = 0
-             Paertaiteen.Size = Vector3.new(30,0.5,30)
-             Paertaiteen.Material = "Neon"
-             while true do 
- 
-                 wait(0.1) 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 0, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 155, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 255, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(0, 255, 0)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(0, 255, 255)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(0, 155, 255)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 0, 255)}):Play() 
-                 wait(.5)
- 
-                 game:GetService('TweenService'):Create(
-                     Paertaiteen,TweenInfo.new(1,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut),
-                 {Color = Color3.fromRGB(255, 0, 155)}):Play() 
-                 wait(.5)
-             end 
-         elseif game:GetService("Workspace"):FindFirstChild("LOL") then
-             game.Workspace["LOL"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.92,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+            if not game.Workspace:FindFirstChild("LOL") then
+                local PartNeon = Instance.new("Part")
+                PartNeon.Name = "LOL"
+                PartNeon.Parent = game.Workspace
+                PartNeon.Anchored = true
+                PartNeon.Transparency = 0
+                PartNeon.Size = Vector3.new(30, 0.5, 30)
+                PartNeon.Material = "Neon"
+
+                while wait() do
+                    local colors = {
+                        Color3.fromRGB(255, 0, 0),
+                        Color3.fromRGB(255, 155, 0),
+                        Color3.fromRGB(255, 255, 0),
+                        Color3.fromRGB(0, 255, 0),
+                        Color3.fromRGB(0, 255, 255),
+                        Color3.fromRGB(0, 155, 255),
+                        Color3.fromRGB(255, 0, 255),
+                        Color3.fromRGB(255, 0, 155)
+                    }
+
+                    for i, color in ipairs(colors) do
+                        game:GetService('TweenService'):Create(PartNeon, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Color = color}):Play()
+                        wait(0.5)
+                    end
+                end
+            else
+                game.Workspace["LOL"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
             end
-     else
-         if _G.PartNeon == false then
-                 game:GetService("Workspace"):FindFirstChild("LOL")
-                 game:GetService("Workspace"):FindFirstChild("LOL"):Destroy()
-         end
-        end)
+        else
+            if game.Workspace:FindFirstChild("LOL") then
+                game.Workspace:FindFirstChild("LOL"):Destroy()
+            end
+        end
     end)
-end
+end)
+
 	end    
 })
 

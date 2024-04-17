@@ -1997,7 +1997,7 @@ end)
 })
 
 Tab:AddToggle({
-	Name = "Part Neon",
+	Name = "This is a toggle!",
 	Default = false,
 	Callback = function(Value)
         _G.PartNeon = Value
@@ -2066,7 +2066,6 @@ spawn(function()
                  game:GetService("Workspace"):FindFirstChild("LOL")
                  game:GetService("Workspace"):FindFirstChild("LOL"):Destroy()
                  end
-        end
         end)
  end)
 end)

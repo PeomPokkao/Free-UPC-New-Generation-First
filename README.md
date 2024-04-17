@@ -8,6 +8,15 @@ elseif game.PlaceId == 7449423635 then
     W3 = true
 end
 
+local id = game.PlaceId
+
+if id == 2753915549 then
+end
+if id == 4442272183 then
+end
+if id == 7449423635 then
+end
+
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 	wait(1)
@@ -41,13 +50,6 @@ OrionLib:MakeNotification({
 	Content = "Welcome to Uppercut Hub" ..Player.Name.. " ",
 	Image = "rbxassetid://11915607895",
 	Time = 3
-})
-
-OrionLib:MakeNotification({
-	Name = "Yo!",
-	Content = "Enjoys with our scripts . . .",
-	Image = "rbxassetid://11915607895",
-	Time = 5
 })
 
 local Tab1 = Window:MakeTab({
@@ -1995,7 +1997,7 @@ end)
 })
 
 Tab1:AddToggle({
-	Name = "Part Neon",
+	Name = "PartNeon",
 	Default = false,
 	Callback = function(Value)
         _G.PartNeon = Value
@@ -2039,7 +2041,6 @@ spawn(function()
         end
     end)
 end)
-
 	end    
 })
 
@@ -2047,7 +2048,28 @@ local Section = Tab2:AddSection({
 	Name = "Teleport"
 })
 
-if W == true then
+Tab2:AddButton({
+	Name = "TravelMain",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "TravelDressrosa",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+  	end    
+})
+
+Tab2:AddButton({
+	Name = "TravelZou",
+	Callback = function()
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+  	end    
+})
+
+if id == 2753915549 then
 
 Tab2:AddDropdown({
 	Name = "Select Land",

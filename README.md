@@ -1998,7 +1998,7 @@ end)
 
 Tab1:AddToggle({
 	Name = "PartNeon",
-	Default = false,
+	Default = true,
 	Callback = function(Value)
         _G.PartNeon = Value
 

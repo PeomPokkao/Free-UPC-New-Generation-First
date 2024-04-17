@@ -2002,7 +2002,6 @@ Tab:AddToggle({
 	Callback = function(Value)
         _G.PartNeon = Value
 if _G.PartNeon == true then
-spawn(function()
     pcall(function()
        game:GetService("RunService").Heartbeat:Connect(function()
         if _G.PartNeon then
@@ -2068,7 +2067,6 @@ spawn(function()
                  end
         end)
  end)
-end)
 end
 	end    
 })

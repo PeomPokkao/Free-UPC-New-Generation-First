@@ -1996,14 +1996,14 @@ end)
 	end    
 })
 
-Tab:AddToggle({
-	Name = "This is a toggle!",
+Tab1:AddToggle({
+	Name = "Part Neon",
 	Default = false,
 	Callback = function(Value)
         _G.PartNeon = Value
 if _G.PartNeon == true then
-    pcall(function()
-       game:GetService("RunService").Heartbeat:Connect(function()
+spawn(function()
+    game:GetService("RunService").Heartbeat:Connect(function()
         if _G.PartNeon then
           if not game:GetService("Workspace"):FindFirstChild("LOL") then
              local Paertaiteen = Instance.new("Part")
@@ -2058,15 +2058,14 @@ if _G.PartNeon == true then
              end 
          elseif game:GetService("Workspace"):FindFirstChild("LOL") then
              game.Workspace["LOL"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y - 3.92,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
-             
-         end
+            end
      else
          if _G.PartNeon == false then
                  game:GetService("Workspace"):FindFirstChild("LOL")
                  game:GetService("Workspace"):FindFirstChild("LOL"):Destroy()
-                 end
+         end
         end)
- end)
+    end)
 end
 	end    
 })

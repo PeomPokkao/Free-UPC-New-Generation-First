@@ -17,11 +17,7 @@ end
 if id == 7449423635 then
 end
 
-game:GetService("Players").LocalPlayer.Idled:connect(function()
-	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-	wait(1)
-	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
+-- [Tween]
 
 function TP(Pos)
     Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
@@ -41,32 +37,25 @@ function TP(Pos)
     ):Play()
 end
 
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Player = game.Players.LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "UPPERCUT HUB", HidePremium = false, SaveConfig = true, IntroEnabled = false})
+-- [Tween]
 
-OrionLib:MakeNotification({
-	Name = "Logged in!",
-	Content = "Welcome to Uppercut Hub" ..Player.Name.. " ",
-	Image = "rbxassetid://11915607895",
-	Time = 3
-})
+-- [Anti AFK]
 
-local Tab1 = Window:MakeTab({
-	Name = "Main",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+	game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+	wait(1)
+	game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
 
-local Tab2 = Window:MakeTab({
-	Name = "Teleport",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+-- [Anti AFK]
 
-local Section = Tab1:AddSection({
-	Name = "Main"
-})
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Patskorn/GUI/main/Copy-SynapOver.lua"))()
+
+local GUI = library:new("Pokkao Hub "," Premium Scripts ]")
+local Tab1 = GUI:Tap("Genaral")
+local Tab2 = GUI:Tap("Teleport")
+
+Tab1:Line()
 
 local X2Code = {
     "TheGreatAce",        
@@ -90,27 +79,18 @@ local X2Code = {
     "Starcodeheo"
 }
 
-Tab1:AddButton({
-	Name = "RedeemCodeX2",
-	Callback = function(v)
-        function RedeemCode(v)
-            game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(value)
-        end
-        for i,v in pairs(x2Code) do
-            RedeemCode(v)
-        end
-  	end    
-})
+Tab1:Button("RedeemCodeX2",function(value)
+    function RedeemCode(v)
+        game:GetService("ReplicatedStorage").Remotes.Redeem:InvokeServer(value)
+    end
+    for i,v in pairs(x2Code) do
+        RedeemCode(v)
+    end
+end)
 
-
-
-Tab1:AddToggle({
-	Name = "AuTo FarM LeVel",
-	Default = false,
-	Callback = function(Value)
-        _G.AUTOFARM = Value
+Tab1:Toggle("AuToFarm",function(value)
+    _G.AUTOFARM = value
 _G.By_Pass = false
-
 getgenv().ToTargets = function(p)
     task.spawn(function()
         pcall(function()
@@ -1687,14 +1667,10 @@ game:GetService("Players").LocalPlayer.Idled:connect(function()
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 ----------------------------------------------------------------
-	end    
-})
+end)
 
-Tab1:AddToggle({
-	Name = "Fast Attack",
-	Default = true,
-	Callback = function(Value)
-        _G.F = Value
+Tab1:Toggle("Fast Attack",function(value)
+    _G.F = value
 
 local plr = game.Players.LocalPlayer
 
@@ -1993,14 +1969,10 @@ end)
             end
         end
     end)
-	end    
-})
+end)
 
-Tab1:AddToggle({
-	Name = "PartNeon",
-	Default = true,
-	Callback = function(Value)
-        _G.PartNeon = Value
+Tab1:Toggle("Fast Attack",function(value)
+    _G.PartNeon = Value
 
 spawn(function()
     game:GetService("RunService").Heartbeat:Connect(function()
@@ -2041,48 +2013,26 @@ spawn(function()
         end
     end)
 end)
-	end    
-})
+end)
 
-local Section = Tab2:AddSection({
-	Name = "Teleport"
-})
+Tab2:Button("TravelMain",function(value)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+end)
 
-Tab2:AddButton({
-	Name = "TravelMain",
-	Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
-  	end    
-})
+Tab2:Button("TravelDressrosa",function(value)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+end)
 
-Tab2:AddButton({
-	Name = "TravelDressrosa",
-	Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-  	end    
-})
-
-Tab2:AddButton({
-	Name = "TravelZou",
-	Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
-  	end    
-})
+Tab2:Button("TravelZou",function(value)
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+end)
 
 if id == 2753915549 then
+    Tab2:Dropdown("Teleport in world 1",{"Pirate Starter Island", "Marine Starter Island", "Middle Town", "Jungle", "Pirate Village", "Desert", "Frozen Village", "Marine Fortress", "Skylands", "Prison", "Colosseum", "Magma Village", "Underwater City", "Upper Skylands", "Fountain City"},function(t)
+        _G.Teleport = t
+    end)
 
-Tab2:AddDropdown({
-	Name = "Select Land",
-	Default = "Select",
-	Options = {"Pirate Starter Island", "Marine Starter Island", "Middle Town", "Jungle", "Pirate Village", "Desert", "Frozen Village", "Marine Fortress", "Skylands", "Prison", "Colosseum", "Magma Village", "Underwater City", "Upper Skylands", "Fountain City"},
-	Callback = function(Value)
-		print(Value)
-	end    
-})
-
-Tab2:AddButton({
-	Name = "Button!",
-	Callback = function(Value)
+    Tab2:Button("Start Teleport",function(value)
         pcall(function()
             if _G.Teleport == "Pirate Starter Island" then
                 TP(CFrame.new(1211.525390625, 16.529319763183594, 1418.1884765625))
@@ -2114,9 +2064,94 @@ Tab2:AddButton({
                 TP(CFrame.new(-7760.98046875, 5644.88037109375, -1882.901123046875))
             elseif _G.Teleport == "Fountain City" then
                 TP(CFrame.new(5048.60595703125, 4.501288890838623, 4164.57080078125))
+                elseif _G.Teleport = true then
+                    _G.PartNeon = true
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/PeomPokkao/PartNeonFor/main/README.md"))()
+                    else
+                        if game.Workspace:FindFirstChild("LOL") then
+                            game.Workspace:FindFirstChild("LOL"):Destroy()
+                        end
             end
         end)
-  	end    
-})
+    end)
 
-end ----ห้ามลบไอหน้าหี----
+end
+
+if id == 4442272183 then
+    Tab2:Dropdown("Teleport in world 2",{"Cafe", "Mansion", "Kingdom of Rose", "Green Zone", "Graveyard", "Dark Arena", "Snow Mountain", "Hot and Cold", "Cursed Ship", "Ice Castle", "Forgotten Island", "Usoap's Island"},function(t)
+        _G.Teleport = t
+    end)
+
+    Tab2:Button("Start Teleport",function(value)
+        pcall(function()
+            if _G.Teleport == "Cafe" then
+                TP(CFrame.new(-412.3954162597656, 73.02007293701172, 373.0472106933594))
+            elseif _G.Teleport == "Mansion" then
+                TP(CFrame.new(-512.7244262695312, 331.8605651855469, 588.41015625))
+            elseif _G.Teleport == "Kingdom of Rose" then
+                TP(CFrame.new(-605.6656494140625, 72.95980834960938, 1255.2930908203125))
+            elseif _G.Teleport == "Green Zone" then
+                TP(CFrame.new(-2302.5791015625, 72.96611785888672, -2818.766357421875))
+            elseif _G.Teleport == "Graveyard" then
+                TP(CFrame.new(-5650.796875, 266.40728759765625, -756.7403564453125))
+            elseif _G.Teleport == "Dark Arena" then
+                TP(CFrame.new(3780.0302734375, 22.652164459228516, -3498.5859375))
+            elseif _G.Teleport == "Snow Mountain" then
+                TP(CFrame.new(594.1454467773438, 401.42193603515625, -5651.62744140625))
+            elseif _G.Teleport == "Hot and Cold" then
+                TP(CFrame.new(-5997.775390625, 15.951759338378906, -4806.2265625))
+            elseif _G.Teleport == "Cursed Ship" then
+                TP(CFrame.new(-6501.919921875, 86.72026062011719, -124.3010025024414))
+            elseif _G.Teleport == "Ice Castle" then
+                TP(CFrame.new(5400.40380859375, 28.191171646118164, -6236.9921875))
+            elseif _G.Teleport == "Forgotten Island" then
+                TP(CFrame.new(-3262.99365234375, 239.40667724609375, -10364.916015625))
+            elseif _G.Teleport == "Usoap's Island" then
+                TP(CFrame.new(4785.087890625, 7.939647197723389, 2919.921630859375))
+                elseif _G.Teleport = true then
+                    _G.PartNeon = true
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/PeomPokkao/PartNeonFor/main/README.md"))()
+                    else
+                        if game.Workspace:FindFirstChild("LOL") then
+                            game.Workspace:FindFirstChild("LOL"):Destroy()
+                        end
+            end
+        end)
+    end)
+
+end
+
+if id == 7449423635 then
+    Tab2:Dropdown("Teleport in world 3",{"Port Town", "Hydra Island", "Great Tree", "Mansion", "Haunted Castle", "Castle on the Sea", "Sea of Treats", ""},function(t)
+        _G.Teleport = t
+    end)
+
+    Tab2:Button("Start Teleport",function(value)
+        pcall(function()
+            if _G.Teleport == "Port Town" then
+                TP(CFrame.new(-290.7376708984375, 6.729952812194824, 5343.5537109375))
+            elseif _G.Teleport == "Hydra Island" then
+                TP(CFrame.new(5228.88427734375, 604.2340087890625, 345.0400390625))
+            elseif _G.Teleport == "Great Tree" then
+                TP(CFrame.new(2192.693115234375, 73.14873504638672, -6894.69189453125))
+            elseif _G.Teleport == "Mansion" then
+                TP(CFrame.new(-12549.7236328125, 345.4334716796875, -7470.36328125))
+            elseif _G.Teleport == "Haunted Castle" then
+                TP(CFrame.new(-9515.3720703125, 164.00624084472656, 5786.06103515625))
+            elseif _G.Teleport == "Castle on the Sea" then
+                TP(CFrame.new(-5074.45556640625, 314.5155334472656, -2991.054443359375))
+            elseif _G.Teleport == "Sea of Treats" then
+                TP(CFrame.new(215.49046325683594, 126.59195709228516, -12600.3134765625))
+            elseif _G.Teleport == "Tiki Outpost" then
+                TP(CFrame.new(-16207.6552734375, 9.0863618850708, 407.59539794921875))
+                elseif _G.Teleport = true then
+                    _G.PartNeon = true
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/PeomPokkao/PartNeonFor/main/README.md"))()
+                    else
+                        if game.Workspace:FindFirstChild("LOL") then
+                            game.Workspace:FindFirstChild("LOL"):Destroy()
+                        end
+            end
+        end)
+    end)
+end

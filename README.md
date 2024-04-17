@@ -58,6 +58,12 @@ local Tab1 = Window:MakeTab({
 	PremiumOnly = false
 })
 
+local Tab2 = Window:MakeTab({
+	Name = "Teleport",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
 local Section = Tab1:AddSection({
 	Name = "Main"
 })
@@ -2066,12 +2072,6 @@ spawn(function()
 end)
 end
 	end    
-})
-
-local Tab2 = Window:MakeTab({
-	Name = "Teleport",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
 })
 
 local Section = Tab2:AddSection({

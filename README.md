@@ -37,9 +37,13 @@ end)
 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Patskorn/GUI/main/Copy-SynapOver.lua"))()
 
-local GUI = library:new("Uppercut Hub","Free Scripts")
-local Tab1 = GUI:Tab("General")
-local Tab2 = GUI:Tab("Teleport")
+local GUI = library:new("Uppercut Hub "," Free Scripts ]")
+local Tab1 = GUI:Tap("Genaral")
+local Tab2 = GUI:Tap("Teleport")
+local Tab3 = GUI:Tap("RTX GRAPHICS")
+local Tab4 = GUI:Tap("others")
+local Tab5 = GUI:Tap("Visuals")
+local Tab6 = GUI:Tap("credits")
 
 Tab1:Line()
 
